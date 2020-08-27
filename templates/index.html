@@ -1,0 +1,10 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'main_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    {% load static %}
+    <img src="{% static 'images/welcome.png' %}" width="1300" height="450">
+{% endblock %}

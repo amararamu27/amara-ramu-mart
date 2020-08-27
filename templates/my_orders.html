@@ -1,0 +1,63 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'customer_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    <style>
+       .one{
+            color: blueviolet;
+            background-color: azure;
+            text-align: center;
+            font-size: 17px;
+            padding: 7px;
+       }
+       .two{
+           text-align: center;
+           padding: 8px;
+       }
+    </style>
+    {% if data7 %}
+
+        <table align="center">
+        <tr>
+            <th style="font-family: 'Times New Roman';padding: 15px;text-align: center;color: red;font-size: 20px">
+                {{ data7 }}
+            </th>
+        </tr>
+        </table>
+
+    {% else %}
+
+       <table align="center" border="2">
+       <tr>
+           <th style="color: orangered;text-align: center;background-color: #f4f5ff;font-size: 20px;padding: 10px" colspan="6">My Order Information</th>
+       </tr>
+       <tr>
+           <th class="one"> Order Id </th>
+           <th class="one"> Order Date </th>
+           <th class="one"> Customer Name </th>
+           <th class="one"> Product Name </th>
+           <th class="one"> Product Price </th>
+           <th class="one"> Product Cancel </th>
+       </tr>
+       {% for x in data6 %}
+       <tr>
+           <th class="two">{{ x.oid }}</th>
+           <th class="two">{{ x.date }}</th>
+           <th class="two">{{ x.customer.cname }}</th>
+           <th class="two">{{ x.product.pname }}</th>
+           <th class="two">{{ x.product.price }}</th>
+           <th class="two">
+               <form action="{% url 'cancel_order' %}" method="post">
+                   {% csrf_token %}
+                   <input type="hidden" value="{{ x.oid }}" name="oid">
+                   <button type="submit" class="btn btn-danger"> Cancel Order </button>
+               </form>
+           </th>
+       {% endfor %}
+       </table>
+
+    {% endif %}
+{% endblock %}

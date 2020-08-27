@@ -1,0 +1,21 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'customer_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    <table align="center" border="0" width="350">
+    <tr>
+        <th>
+            <img src="{{ data3.photo.url }}" width="300" height="300">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <label style="color: blue"> Welcome Mr/Miss :</label>
+            <h4 style="color: red;text-align: center">{{ data3.cname }}</h4>
+        </th>
+    </tr>
+    </table>
+{% endblock %}

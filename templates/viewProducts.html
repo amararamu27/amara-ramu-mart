@@ -1,0 +1,56 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'admin_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    {% load static %}
+    <style>
+        .one{
+            color: blueviolet;
+            background-color: azure;
+            text-align: center;
+            font-size: 17px;
+            padding: 7px;
+        }
+        .two{
+            text-align: center;
+        }
+    </style>
+   <table align="center" border="2">
+   <tr>
+       <th style="color: greenyellow;text-align: center;background-color: #f4f5ff;font-size: 20px;padding: 10px" colspan="7">Products Information</th>
+   </tr>
+   <tr>
+       <th class="one"> Product Id </th>
+       <th class="one"> Product Name </th>
+       <th class="one"> Product Price </th>
+       <th class="one"> Product Quantity </th>
+       <th class="one"> Product Images </th>
+       <th class="one"> Product Update </th>
+       <th class="one"> Product Delete </th>
+   </tr>
+   {% for x in data1 %}
+   <tr>
+       <th class="two">{{ x.pid }}</th>
+       <th class="two">{{ x.pname }}</th>
+       <th class="two">{{ x.price }}</th>
+       <th class="two">{{ x.quantity }}</th>
+       <th class="two">
+           <img src="{{ x.photo.url }}" width="100" height="100">
+       </th>
+       <th class="two">
+           <a href="{% url 'update_product' %}?pid={{ x.pid }}">
+               <img src="{% static 'images/updated.png' %}" height="50" width="50">
+           </a>
+       </th>
+       <th class="two">
+           <a href="{% url 'delete_product' %}?pid={{ x.pid }}">
+               <img src="{% static 'images/remove.png' %}" width="50" height="50">
+           </a>
+       </th>
+   </tr>
+   {% endfor %}
+   </table>
+{% endblock %}

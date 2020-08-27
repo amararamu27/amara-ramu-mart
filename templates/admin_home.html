@@ -1,0 +1,23 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'admin_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    {% load static %}
+    <table align="center">
+
+    <tr>
+        <th>
+            <img src="{% static 'images/admin.png' %}" width="360" height="300">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <h3 style="text-align: center;color: blue;background-color: azure;padding: 10px">Welcome Mr. Amara Ramu</h3>
+        </th>
+    </tr>
+
+    </table>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'admin_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    <form action="{% url 'update_details' %}" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table align="center" width="350">
+    <tr>
+        <th style="text-align: center;color: orange;background-color: lavender;font-size: 20px;padding: 15px">
+            Update Products
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <input type="number" class = "form-control" readonly value="{{ data8.pid }}" required name="u0">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <input type="text" class = "form-control" placeholder="Name" value="{{ data8.pname }}" required name="u1">
+        </th>
+    </tr>
+    <tr>
+        <th>
+            <input type="number" class = "form-control" placeholder="Price" value="{{ data8.price }}" required name="u2">
+        </th>
+    </tr>
+     <tr>
+        <th>
+            <input type="number" class = "form-control" placeholder="Quantity" value="{{ data8.quantity }}" required name="u3">
+        </th>
+    </tr>
+     <tr>
+        <th>
+            <label style="color: blue"> Choose Image Only :</label>
+            <input type="file" required name="u4">
+        </th>
+    </tr>
+    <tr>
+        <th style="padding: 8px;text-align: center">
+            <button type="submit" class="btn btn-primary"> update </button>
+        </th>
+    </tr>
+    </table>
+    </form>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends 'common.html' %}
+
+{% block menu %}
+    {% include 'customer_menu.html' %}
+{% endblock %}
+
+{% block main_body %}
+    {% if data5 %}
+        <table align="center" border="0" width="200">
+        <tr>
+            <th style="text-align: center;padding: 12px;color: red;font-size: 20px;font-family: 'Times New Roman'">
+                {{ data5 }}
+            </th>
+        </tr>
+        </table>
+    {% endif %}
+    <style>
+        .one{
+            color: blueviolet;
+            background-color: azure;
+            text-align: center;
+            font-size: 17px;
+            padding: 7px;
+        }
+    .two{
+        text-align: center;
+    }
+    </style>
+   <table align="center" border="2">
+   <tr>
+       <th style="color: greenyellow;text-align: center;background-color: #f4f5ff;font-size: 20px;padding: 10px" colspan="6">Products Information</th>
+   </tr>
+   <tr>
+       <th class="one"> Product Id </th>
+       <th class="one"> Product Name </th>
+       <th class="one"> Product Price </th>
+       <th class="one"> Product Quantity </th>
+       <th class="one"> Product Images </th>
+       <th class="one"> Order Now </th>
+   </tr>
+   {% for x in data4 %}
+   <tr>
+       <th class="two">{{ x.pid }}</th>
+       <th class="two">{{ x.pname }}</th>
+       <th class="two">{{ x.price }}</th>
+       <th class="two">{{ x.quantity }}</th>
+       <th class="two">
+           <img src="{{ x.photo.url }}" width="100" height="100">
+       </th>
+       <th class="two">
+           <form action="{% url 'save_orders' %}" method="post">
+               {% csrf_token %}
+               <input type="hidden" value="{{ x.pid }}" name="pid">
+               <input type="hidden" value="{{ request.session.user }}" name="cid">
+               <button type="submit" class="btn btn-success"> Buy Now </button>
+           </form>
+       </th>
+   </tr>
+   {% endfor %}
+   </table>
+{% endblock %}
